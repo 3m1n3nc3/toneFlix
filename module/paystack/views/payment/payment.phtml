@@ -1,0 +1,37 @@
+<?php 
+    $full_name = explode(' ', model('user')->authUser['full_name']);
+    $full_name = $full_name ? $full_name : explode(' ', model('user')->authUser['username']);
+    $reference = session_get('about-pay-reference');
+    $currency = session_get('about-pay-currency');
+    $price = session_get('about-pay-price');
+    $details = session_get('about-pay-details');
+?>
+<div class="inner-container">
+    <form class="general-form mb-5" method="post">
+        <div class="upload-types">
+            <h4><?php _l('paystack::payment_summary')?>
+            <div class="row">
+                <div class="col-md-2"></div>
+                <div class="col-md-8 mt-2"> <?php echo read_flashdata('msg') ?></div>
+                <div class="col-md-2"></div>
+            </div>
+            <div class="row">
+                <div class="col-md-2"></div>
+                <div class="col-md-8">
+                    <div class="each" style="text-align: left;height:auto;padding:40px;cursor: default">
+                        <div class="d-flex justify-content-center">
+                            <img src="<?php echo assetUrl('module/paystack/images/paystack_secured.png') ?>" class="thumbnail w-50" alt="PaymentLogo">
+                        </div>
+                        <div class="d-flex flex-column justify-content-start m-2">
+                            <div class="m-2"> <strong>Total: </strong><?php echo $currency .' '. $price ?></div>
+                            <div class="m-2"> <strong>Payment Reference: </strong><?php echo $reference ?></div>
+                            <div class="m-2"> <strong>Payment Detail: </strong><?php echo $details['title'] . ' ' . $details['desc'] ?></div>
+                        </div>
+                        <button type="button" data-size="s" data-style="zoom-in" class="btn btn-primary btn-sm ladda-button" id="paybtn"><?php _l('paystack::pay_now')?></button>
+                    </div>
+                </div>
+                <div class="col-md-2"></div>
+            </div>
+        </div>
+    </form>
+</div>

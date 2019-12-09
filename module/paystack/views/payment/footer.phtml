@@ -1,0 +1,51 @@
+<?php 
+    $full_name = explode(' ', model('user')->authUser['full_name']);
+    $full_name = $full_name ? $full_name : explode(' ', model('user')->authUser['username']);
+    $reference = session_get('about-pay-reference');
+    $currency = session_get('about-pay-currency');
+    $price = session_get('about-pay-price');
+    $details = session_get('about-pay-details');
+?>
+
+<script src="https://js.paystack.co/v1/inline.js"></script>
+<script type="text/javascript">
+    
+    var $loader = '<div class="loader"><div id="loader-1"> <span></span> <span></span> <span></span> </div></div>'; 
+    // var paymentForm = document.getElementById('paymentForm');
+    var paymentBtn = document.getElementById('paybtn');
+    // paymentForm.addEventListener("submit", payWithPaystack, false);
+    if (paymentBtn) {
+        paymentBtn.addEventListener("click", payWithPaystack);
+    }
+
+    function payWithPaystack() {
+
+        $('#paybtn').prepend($loader);
+        $('#paybtn').attr('disabled', 'disabled');
+
+        var handler = PaystackPop.setup({
+            key: '<?php echo config('paystack_public_key') ?>', // Replace with your public key
+            email: '<?php echo model('user')->authUser['email'] ?>',
+            currency: '<?php echo $currency ?>',
+            amount: '<?php echo ($price*100) ?>',
+            firstname: '<?php echo $full_name[0] ?>',
+            lastname: '<?php echo (isset($full_name[1]) ? $full_name[1] : $full_name[0]) ?>',
+            ref: '<?php echo $reference ?>',
+            // label: "Optional string that replaces customer email"
+            onClose: function(){
+                $('.loader').remove();
+                $('#paybtn').removeAttr('disabled');
+                $.ajax({
+                    type: 'POST',
+                    url: '<?php echo url('paystack') ?>'
+                });
+            },
+            callback: function(response){
+                window.location.href = '<?php echo url('paystack/success') ?>&reference=' + response.reference; 
+            }
+        });
+          
+        handler.openIframe();
+    }
+
+</script>

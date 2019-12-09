@@ -1,0 +1,22 @@
+<hr/>
+
+<h6><?php _l('paystack::paystack')?></h6>
+<hr/>
+<div class="form-group row">
+    <label for="staticEmail" class="col-sm-3 col-form-label"><?php _l('paystack::paystack_public_key')?></label>
+    <div class="col-sm-5">
+        <input type="text"  name="val[paystack_public_key]" class="form-control form-control-sm"  value="<?php echo config('paystack_public_key', '')?>">
+    </div>
+</div>
+<div class="form-group row">
+    <label for="staticEmail" class="col-sm-3 col-form-label"><?php _l('paystack::paystack_secret_key')?></label>
+    <div class="col-sm-5">
+        <input type="text"  name="val[paystack_secret_key]" class="form-control form-control-sm"  value="<?php echo config('paystack_secret_key', '')?>">
+    </div>
+</div>
+<div class="form-group row">
+    <label for="staticEmail" class="col-sm-3 col-form-label"><?php _l('paystack::paystack_ref_prefix')?></label>
+    <div class="col-sm-5">
+        <input type="text"  name="val[paystack_ref_prefix]" class="form-control form-control-sm"  value="<?php echo config('paystack_ref_prefix', '')?>">
+    </div>
+</div>
