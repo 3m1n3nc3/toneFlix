@@ -5,11 +5,7 @@ Hook::getInstance()->register('admin.settings.integrations', function() {
 
 Hook::getInstance()->register('header.after.css', function() {
     echo '<link href="'.assetUrl('module/paystack/styles/loader.css').'?time='.fileatime(path('module/paystack/styles/loader.css')).'" rel="stylesheet">';
-});
-
-Hook::getInstance()->register('home-footer-links', function() {
-    echo '<a  href="'.url('paystack').'">'.l('paystack::paystack').'</a>';
-});
+}); 
 
 Hook::getInstance()->register('payment.method', function() {
     if(config('paystack_public_key', '')) { 
