@@ -1,6 +1,6 @@
 <div id="sideHeader">
     <div class="top clearfix">
-<!--         <div class="float-left">
+        <div class="float-left">
             <a class="navbar-brand " <?php echo ($C->model('user')->isLoggedIn()) ? 'data-ajax="true"' : null?> href="<?php echo url()?>">
                 <img class="light-logo" style="" src="<?php echo assetUrl(config('site_logo', 'assets/images/logo.png'))?>"/>
                 <img class="dark-logo" src="<?php echo assetUrl(config('site_logo_dark', 'assets/images/logo-dark.png'))?>"/>
@@ -17,7 +17,7 @@
                     <a href="<?php echo url('change/language', array('id' => $language))?>" class="dropdown-item"> <img style="width: 17px;" class="mr-1" src="<?php echo assetUrl('assets/images/flags/'.$language.'.png')?>"/> <span class="pt-1"><?php echo getLanguageName($language)?></span></a>
                 <?php endforeach;?>
             </div>
-        </div> -->
+        </div>
     </div>
 
     <div id="side-menu">
