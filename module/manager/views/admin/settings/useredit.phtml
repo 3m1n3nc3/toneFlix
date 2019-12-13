@@ -1,0 +1,14 @@
+         
+                <hr/>
+
+                <h6><?php _l('manager::artist_management')?></h6>
+                <div class="form-group row">
+                    <label for="staticEmail" class="col-sm-3 col-form-label"><?php _l('manager::make_record_label')?></label>
+                    <div class="col-sm-5">
+                        <select name="val[is_label]" class="form-control form-control-sm">
+                            <option value="0"<?php echo ($user['is_label'] == 0 ? ' selected="selected"' : ' ')?>><?php _l('no')?></option>
+                            <option value="1"<?php echo ($user['is_label'] == 1 ? ' selected="selected"' : ' ')?>><?php _l('yes')?></option>
+                        </select> 
+                        <span class="text-muted"><?php _l('manager::allow_artist_management_info')?></span>
+                    </div> 
+                </div>

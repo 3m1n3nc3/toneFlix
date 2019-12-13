@@ -1,0 +1,15 @@
+<script type="text/javascript">
+	function searchUsers(str) {
+		var str = $(".artist-search").val();
+		if (!/^\s*$/.test(str)) {
+		    $.ajax({ 
+		        url : buildLink('labeler/search', [{key:'query','value':str}]),//'<?php echo url('labeler/search', array('query' => '')) ?>',
+		        success: function(r) {
+		            // $(".artist-search").html(r);
+		            // reloadInit();
+		        }
+		    });
+		}
+	    return false;
+	}
+</script>

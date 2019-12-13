@@ -1,0 +1,5 @@
+
+    <?php $C = getController()?>
+    <li><a class="head" href="<?php echo url('label/manager/users')?>"  data-ajax="true"><?php  _l('manager::manage_artists')?></a></li>
+
+    <li><a id="history-menu" class="sub-menu  <?php echo ( $C->activeMenu == 'manage_artists') ? 'active' : null?> " href="<?php echo url('label/manager/users')?>"  data-ajax="true"> <i class="la-users la "></i> <span><?php _l('manager::manage_artists')?></span></a></li>

@@ -1,0 +1,5 @@
+	<?php if($type == 'claim'):?>	
+		<?php if(!$C->model('user')->isLoggedIn() AND config('allow_claiming') AND config('allow_artist_manager') AND $user['claim'] == 1):?>
+			<a style="background: #ffffff;" class="btn each mtooltip" title="<?php _l('manager::claim_profile')?>" href="<?php echo url('claim', array('profile' => $user['id']))?>"> <?php _l('manager::claim_profile')?></a> 
+	    <?php endif?>
+	<?php endif?>
