@@ -41,7 +41,7 @@ Hook::getInstance()->register('track.added', function($trackId, $val) {
 });   
 
 Hook::getInstance()->register('main.menu.bottom', function() { 
-    if(config('allow_artist_manager')) {
+    if(config('allow_artist_manager') && model('user')->getUser(model('user')->authId)['is_label']) {
     	echo view('manager::management/sidemenu');
 	} 
 }); 
