@@ -1,0 +1,70 @@
+<div class="profile-menu">
+    <div class="inner-container">
+        <nav class="nav nav-tabs" id="myTab" role="tablist"> 
+            <a class=" nav-link" data-ajax="true"  href="<?php echo url('label/manager/user/edit', array('id' => $user['id']))?>" ><?php echo $user['full_name']?> <?php _l('details')?></a>
+            <a class=" nav-link active" data-ajax="true"  href="<?php echo url('label/manager/user/edit/picture', array('id' => $user['id']))?>" ><?php echo $user['full_name']?> <?php _l('manager::profile_picture')?></a> 
+            <a class=" nav-link " data-ajax="true"  href="<?php echo url('label/manager/tracks', array('user' => $user['id']))?>" ><?php _l('tracks')?> (<?php echo $C->model('track')->countTracks($user['id'])?>)</a> 
+
+        </nav>
+    </div>
+</div>
+<div class="inner-container">
+    <form method="post" class="general-form" action="<?php echo getFullUrl(true)?>" enctype="multipart/form-data">
+ 
+        <div class="form-group mb-5 mt-4">
+            <div class="row">
+                <div class="col-sm-4">
+                    <label class="bold"><?php _l('profile-picture')?></label>
+                    <span class="form-text text-muted"><?php echo config('image-file-types', 'jpg,png,gif,jpeg')?></span>
+                </div>
+                <div class="col-sm-8">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="input-picker mb-3">
+                                <button class="btn btn-outline-secondary btn-sm btn-block"><?php _l('select-image')?></button>
+                                <input data-placeholder="#profileAvatar" onchange="validate_file_size(this, 'image')" type="file" name="avatar"/>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="avatar-placeholder">
+                                <div id="profileAvatar" style="background-image: url(<?php echo $C->model('user')->getAvatar($user, 200)?>);display: block;"></div>
+                                <i class="la la-photo"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="form-group ">
+            <div class="row">
+                <div class="col-sm-4">
+                    <label class="bold"><?php _l('profile-cover')?></label>
+                    <span class="form-text text-muted"><?php echo config('image-file-types', 'jpg,png,gif,jpeg')?></span>
+                </div>
+                <div class="col-sm-8">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="input-picker mb-3">
+                                <button class="btn btn-outline-secondary btn-sm btn-block"><?php _l('select-image')?></button>
+                                <input data-placeholder="#profileCover" onchange="validate_file_size(this, 'image')" type="file" name="cover"/>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="avatar-placeholder avatar-placeholder-flat">
+                                <div id="profileCover" style="background-image: url(<?php echo $C->model('user')->getCover($user)?>);display: block;"></div>
+                                <i class="la la-photo"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <input type="hidden" name="ignore" value="1">
+
+        <button data-size="s" data-style="zoom-in" class="btn btn-info  ladda-button mt-3" id="account-submit" type="submit"><?php _l('save')?></button>
+    </form>
+</div>

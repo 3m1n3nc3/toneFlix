@@ -118,6 +118,55 @@ class ManagerController extends Controller {
     }
 
     /**
+     * endpoint for label/manager/users/edit/photo
+     */
+    public function userPictureEdit() {
+        $this->allow_label($this->request->input('id'));
+        $this->activeMenu = 'manage_artists';
+        $this->setTitle(l('manager::edit_profile_picture'));
+        $this->addBreadCrumb(l('edit-user'));
+        $user = $this->model('user')->getUser($this->request->input('id'));
+
+        if (!$user) $this->request->redirectBack();
+        $message = null;
+        $messageType = 'danger';
+
+        if ($this->request->inputFile('avatar') or $this->request->inputFile('cover')) {
+            $avatar = $this->request->inputFile('avatar');
+            $cover = $this->request->inputFile('cover');
+            if ($avatar) {
+                
+                $uploader = new Uploader($avatar);
+                $uploader->setPath('avatar/'.$user['id'].'/');
+                if ($uploader->passed()) {
+                    $avatar = $uploader->resize()->result(); 
+                    $this->model('user')->saveUser(array('avatar' => $avatar), $user);
+                } else {
+                    return json_encode(array('type' => 'error', 'message' => $uploader->getError()));
+                }
+            }
+
+            if ($cover) {
+                $uploader = new Uploader($cover);
+                $uploader->setPath('cover/'.$user['id'].'/');
+                if ($uploader->passed()) {
+                    $cover = $uploader->uploadFile()->result(); 
+                    $this->model('user')->saveUser(array('cover' => $cover), $user);
+                } else {
+                    return json_encode(array('type' => 'error', 'message' => $uploader->getError()));
+                }
+            }
+
+            return json_encode(array(
+                'type' => 'success',
+                'message' => l('account-settings-saved')
+            ));
+        }
+
+        return $this->render($this->view('manager::management/edit_picture', array('user' => $user, 'message' => $message,'messageType' => $messageType)),true);
+    }
+
+    /**
      * endpoint for label/manager/tracks 
      */
     public function tracks() {

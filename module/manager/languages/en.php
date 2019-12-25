@@ -17,5 +17,7 @@ return array(
     'allow_claiming_info' => 'If Allow Artist Management is on, this will allow non users to claim a managed account.',
     'label_management' => 'Label Management',
     'manage_artists' => 'Manage Artists',
-    'label_manager' => 'Label Manager'
+    'label_manager' => 'Label Manager',
+    'profile_picture' => 'Profile Picture',
+    'edit_profile_picture' => 'Edit Profile Picture'
 );
