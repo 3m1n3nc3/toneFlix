@@ -54,6 +54,12 @@ Hook::getInstance()->register('main.menu.bottom', function() {
 	} 
 }); 
 
+Hook::getInstance()->register('admin.menu.end', function() { 
+    if(config('allow_artist_manager') && model('user')->getUser(model('user')->authId)['is_label']) {
+    	echo view('manager::management/sidemenu');
+	} 
+}); 
+
 $request->any("label/manager", array('uses' => 'manager::manager@index')); 
 $request->any("label/manager/tracks", array('uses' => 'manager::manager@tracks')); 
 $request->any("label/manager/users", array('uses' => 'manager::manager@index')); 
