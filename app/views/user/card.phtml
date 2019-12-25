@@ -3,7 +3,7 @@
     </a>
     <a data-ajax="true" href="<?php echo $C->model('user')->profileUrl($user)?>">
         <h6>
-            <?php echo $user['full_name']?>
+            <?php echo $user['full_name']?><?php Hook::getInstance()->fire('profile.name.section', null, array($user))?>
             <?php echo $C->view('user/badge', array('userid'=> $user['id']))?>
         </h6>
     </a>

@@ -13,7 +13,7 @@ Hook::getInstance()->register('profile.right.buttons', function($user) {
 }); 
 
 Hook::getInstance()->register('profile.name.section', function($user) {
-    echo ($user['is_label'] ? '('.l('manager::record_label').')' : '');
+    echo ($user['is_label'] ? ' ('.l('manager::record_label').')' : '');
 }); 
 
 Hook::getInstance()->register('admin.user.edit', function($user) {

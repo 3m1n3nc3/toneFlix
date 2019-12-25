@@ -7,7 +7,7 @@
             <div class="float-left">
                 <h5 class="mt-0 media-heading">
                     <a data-ajax="true" href="<?php echo $C->model('user')->profileUrl($user)?>">
-                        <?php echo $user['full_name']?>
+                        <?php echo $user['full_name']?><?php Hook::getInstance()->fire('profile.name.section', null, array($user))?>
                         <?php echo $C->view('user/badge', array('userid'=> $user['id']))?>
                     </a></h5>
                 <?php $countFollowers = $C->model('user')->countFollowers($user['id']); echo $countFollowers?> <?php _l('followers')?>

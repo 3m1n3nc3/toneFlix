@@ -30,7 +30,7 @@
                             <img class="mr-3 avatar" style="width: 100px;" src="<?php echo $C->model('user')->getAvatar($user,200)?>" >
                             <div class="media-body clearfix">
                                 <div class="float-left">
-                                    <h5 class="mt-0"><a data-ajax='true' href="<?php echo url('admin/user/edit', array('id' => $user['id']))?>"><?php echo $user['full_name']?></a></h5>
+                                    <h5 class="mt-0"><a data-ajax='true' href="<?php echo url('admin/user/edit', array('id' => $user['id']))?>"><?php echo $user['full_name']?><?php Hook::getInstance()->fire('profile.name.section', null, array($user))?></a></h5>
                                     <span><?php echo $user['email']?></span>
                                     <?php if($user['banned']):?>
                                         <h4 class="badge badge-secondary" style="font-size: 15px;"><?php _l('banned')?></h4>

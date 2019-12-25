@@ -19,7 +19,7 @@
                                 <div class="art" style="background-image: url(<?php echo $C->model('user')->getAvatar($user, 200)?>);"></div>
                             </a>
                             <div class="grid-title-container mt-3">
-                                <a data-ajax="true" href="<?php echo $C->model('user')->profileUrl($user)?>" class="grid-title "><span><b><?php echo $user['full_name']?></b></span></a>
+                                <a data-ajax="true" href="<?php echo $C->model('user')->profileUrl($user)?>" class="grid-title "><span><b><?php echo $user['full_name']?><?php Hook::getInstance()->fire('profile.name.section', null, array($user))?></b></span></a>
                             </div>
                         </div>
                     </div>
