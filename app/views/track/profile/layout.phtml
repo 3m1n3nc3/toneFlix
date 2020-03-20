@@ -75,7 +75,8 @@
                                        <?php endif?>
                                        <?php if(model('track')->canDownload($track)):?>
                                            <a onclick="addDownload(<?php echo $track['id']?>)" class="btn" href="<?php echo model('track')->getDownloadUrl($track)?>" download>
-                                               <i class="la la-cloud-download"></i>
+                                               <i class="la la-download"></i>
+                                                   <?php _l('download-track')?></a>
                                            </a>
                                        <?php else:?>
                                            <?php Hook::getInstance()->fire('track-not-download-button', null, array($track))?>
