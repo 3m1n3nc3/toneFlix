@@ -90,6 +90,7 @@ return array(
     "monthly-price" => "maandelijkse prijs",
     "yearly-price" => "Jaarprijs",
     "track-size" => "Spoorgrootte",
+    "download" => "Download",
     "download-track" => "Spoor downloaden",
     "follow-users-artists" => "Volg gebruikers / artiesten",
     "comment-on-track" => "Reageer op tracks",

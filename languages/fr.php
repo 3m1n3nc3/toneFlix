@@ -90,6 +90,7 @@ return array(
     "monthly-price" => "Prix ​​mensuel",
     "yearly-price" => "Prix ​​annuel",
     "track-size" => "Taille de la piste",
+    "download" => "Download",
     "download-track" => "Télécharger la piste",
     "follow-users-artists" => "Suivre les utilisateurs / artistes",
     "comment-on-track" => "Commenter les pistes",

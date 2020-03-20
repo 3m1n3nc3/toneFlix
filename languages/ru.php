@@ -90,6 +90,7 @@ return array(
     "monthly-price" => "Месячная цена",
     "yearly-price" => "Годовая цена",
     "track-size" => "Размер трека",
+    "download" => "Download",
     "download-track" => "Скачать трек",
     "follow-users-artists" => "Следуйте за пользователями / художниками",
     "comment-on-track" => "Комментарий к трекам",

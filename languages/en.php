@@ -89,6 +89,7 @@ return array(
     'monthly-price' => 'Monthly Price',
     'yearly-price' => 'Yearly Price',
     'track-size' => 'Track size',
+    'download' => 'Download',
     'download-track' => 'Download track',
     'follow-users-artists' => 'Follow users / Artists and Labels',
     'comment-on-track' => 'Comment on tracks',

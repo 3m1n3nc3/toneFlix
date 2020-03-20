@@ -90,6 +90,7 @@ return array(
     "monthly-price" => "月額",
     "yearly-price" => "年間価格",
     "track-size" => "トラックサイズ",
+    "download" => "Download",
     "download-track" => "ダウンロードトラック",
     "follow-users-artists" => "ユーザー/アーティストをフォローする",
     "comment-on-track" => "トラックへのコメント",
