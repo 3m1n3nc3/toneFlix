@@ -1,5 +1,3 @@
-<hr/>
-
 <h6><?php _l('manager::allow_artist_management')?></h6>
 <hr/>
 <div class="form-group row">
@@ -11,7 +9,7 @@
         </select> 
         <span class="text-muted"><?php _l('manager::allow_artist_management_info')?></span>
     </div>
-</div>  
+</div> 
 
 <div class="form-group row">
     <label for="staticEmail" class="col-sm-3 col-form-label"><?php _l('manager::allow_claiming')?></label>
@@ -21,5 +19,30 @@
             <option value="1"<?php echo config('allow_claiming') == 1 ? ' selected="selected"' : ' '?>><?php _l('manager::allowed')?></option>
         </select> 
         <span class="text-muted"><?php _l('manager::allow_claiming_info')?></span>
+    </div>
+</div>  
+
+<h6><?php _l('manager::anonymous_downloads_counter')?></h6>
+<hr/>
+
+<div class="form-group row">
+    <label for="staticEmail" class="col-sm-3 col-form-label"><?php _l('manager::anonymous_downloads')?></label>
+    <div class="col-sm-5">
+        <select name="val[anonymous_downloads]" class="form-control form-control-sm">
+            <option value="0"<?php echo config('anonymous_downloads') == 0 ? ' selected="selected"' : ' '?>><?php _l('manager::hidden')?></option>
+            <option value="1"<?php echo config('anonymous_downloads') == 1 ? ' selected="selected"' : ' '?>><?php _l('manager::shown')?></option>
+        </select> 
+        <span class="text-muted"><?php _l('manager::anonymous_downloads_info')?></span>
+    </div>
+</div> 
+
+<div class="form-group row">
+    <label for="staticEmail" class="col-sm-3 col-form-label"><?php _l('manager::sum_anonymous_downloads')?></label>
+    <div class="col-sm-5">
+        <select name="val[sum_anonymous_downloads]" class="form-control form-control-sm">
+            <option value="0"<?php echo config('sum_anonymous_downloads') == 0 ? ' selected="selected"' : ' '?>><?php _l('no')?></option>
+            <option value="1"<?php echo config('sum_anonymous_downloads') == 1 ? ' selected="selected"' : ' '?>><?php _l('yes')?></option>
+        </select> 
+        <span class="text-muted"><?php _l('manager::sum_anonymous_downloads_info')?></span>
     </div>
 </div>  

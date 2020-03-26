@@ -58,8 +58,7 @@
                                        <a class="btn <?php echo ($track['public'] == 3) ? 'disabled':null?> like-button-track-<?php echo $track['id']?> ajax-action <?php echo ($C->model('track')->hasLiked('track', $track['id'])) ? 'liked' : null?>" href="<?php echo url('like/item', array('type' => 'track', 'type_id' => $track['id']))?>"><i class="la la-heart"></i> <?php _l('like')?></a>
                                        <?php if($track['userid'] != $C->model('user')->authId):?>
                                            <?php $hasReposted = $C->model('track')->hasReposted($track['id'], 0, 'reposted')?>
-                                           <a
-                                                   href="<?php echo url('repost/item', array('action' => 'reposted', 'track' => $track['id'], 'playlist_id' => 0))?>"
+                                           <a href="<?php echo url('repost/item', array('action' => 'reposted', 'track' => $track['id'], 'playlist_id' => 0))?>"
                                                    class="<?php echo ($track['public'] == 3) ? 'disabled':null?> btn ajax-action repost-button-track-<?php echo $track['id']?> <?php echo $hasReposted ? 'reposted' : null?>">
                                                <i class="la la-retweet <?php echo ($hasReposted) ? 'colored' : null?>"></i>
                                                <span><?php echo ($hasReposted) ? l('reposted') : l('repost')?></span>
@@ -114,22 +113,41 @@
                                    <?php if($track['stats'] OR $track['userid'] == $C->model('user')->authId):?>
                                        <?php $countComments = $C->model('track')->countComments('track', $track['id'])?>
                                        <ul class="track-stats">
+                                          <li >
+                                            <a href="" class="like-count-track-<?php echo $track['id']?>" style="<?php echo ($countLikes < 1) ? 'display:none': null?>"><i class="la la-heart-o"></i> <span><?php echo $countLikes?></span></a>
+                                          </li>
 
-                                           <li ><a href="" class="like-count-track-<?php echo $track['id']?>" style="<?php echo ($countLikes < 1) ? 'display:none': null?>"><i class="la la-heart-o"></i> <span><?php echo $countLikes?></span></a></li>
+                                          <li>
+                                            <a href="" class="comment-count-track-<?php echo $track['id']?>" style="<?php echo ($countComments < 1) ? 'display:none': null?>"><i class="fa fa-comment"></i> <span><?php echo $countComments?></span></a>
+                                          </li>
 
-                                           <li ><a href="" class="comment-count-track-<?php echo $track['id']?>" style="<?php echo ($countComments < 1) ? 'display:none': null?>"><i class="fa fa-comment"></i> <span><?php echo $countComments?></span></a></li>
-
-                                           <li ><a class="repost-count-track-<?php echo $track['id']?>" href="" style="<?php echo ($countReposts < 1) ? 'display:none': null?>">
+                                          <li>
+                                            <a class="repost-count-track-<?php echo $track['id']?>" href="" style="<?php echo ($countReposts < 1) ? 'display:none': null?>">
                                                    <i class="la la-retweet"></i>
                                                    <span><?php echo $countReposts?></span>
-                                               </a></li>
+                                               </a>
+                                          </li>
 
-                                           <?php if($track['downloads']):$countDownloads = model('track')->countDownloads($track['id'])?>
-                                               <li ><a href="javascript:void(0)" style="<?php echo ($countDownloads < 1) ? 'display:none': null?>"><i class="la la-download"></i> <span><?php echo $countDownloads?></span></a></li>
-                                           <?php endif?>
-                                           <?php $countViews = $C->model('track')->countViews($track['id'])?>
-                                           <li ><a href="" style="<?php echo ($countViews < 1) ? 'display:none': null?>"><i class="la la-headphones"></i> <span><?php echo $countViews?></span></a></li>
+                                          <?php if($track['downloads'] || config('anonymous_downloads')):
+                                            $countDownloads = model('track')->countDownloads($track['id']);
+                                            if (config('sum_anonymous_downloads')) {
+                                              $countDownloads = model('manager::manager')->countAnonymousDownloads($track['id']) + $countDownloads;
+                                            } else {
+                                              Hook::getInstance()->fire('track.anonymous.downloads', null, array($track));
+                                            }
+                                          ?>
+                                            <?php if($countDownloads):?>
+                                              <li>
+                                                <a href="javascript:void(0)" style="<?php echo ($countDownloads < 1) ? 'display:none': null?>"><i class="la la-download"></i> <span><?php echo $countDownloads?></span></a>
+                                              </li>
+                                            <?php endif;?> 
 
+                                          <?php endif?> 
+                                          <?php $countViews = $C->model('track')->countViews($track['id'])?>
+                                          <li >
+                                            <a href="" style="<?php echo ($countViews < 1) ? 'display:none': null?>">
+                                              <i class="la la-headphones"></i> <span><?php echo $countViews?></span></a>
+                                          </li>
                                        </ul>
                                    <?php endif?>
                                </div>

@@ -1,0 +1,8 @@
+<?php if($track['downloads']):$countAnonymousDownloads = model('manager::manager')->countAnonymousDownloads($track['id'])?>
+<li >
+    <a href="javascript:void(0)" style="<?php echo ($countAnonymousDownloads < 1) ? 'display:none': null?>">
+        <i class="fa fa-cloud-download"></i> 
+        <span><?php echo $countAnonymousDownloads?></span>
+    </a>
+</li>
+<?php endif?> 

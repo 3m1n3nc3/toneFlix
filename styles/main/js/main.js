@@ -3494,6 +3494,13 @@ function addDownload(id) {
     $.ajax({
         url : buildLink('track/add/download', [{key: 'id', value: id}])
     });
+    addAnonymousDownload(id);
+}    
+
+function addAnonymousDownload(id) {
+    $.ajax({
+        url : buildLink('label/track/add/anonymous/download', [{key: 'id', value: id}])
+    });
 }
 
 function share(id, type) {

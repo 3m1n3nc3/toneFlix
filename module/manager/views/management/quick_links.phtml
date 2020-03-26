@@ -3,3 +3,7 @@
 			<a style="background: #ffffff;" class="btn each mtooltip" title="<?php _l('manager::claim_profile')?>" href="<?php echo url('claim', array('profile' => $user['id']))?>"> <?php _l('manager::claim_profile')?></a> 
 	    <?php endif?>
 	<?php endif?>
+
+    <?php if($type == 'stats'):?>   
+        <a href="<?php echo url('statistics', array('id'=> $track['id']))?>" class="btn btn-sm btn-secondary mtitle" title="<?php _l('statistics')?>" ><i class="la la-bar-chart"></i></a>
+    <?php endif?>

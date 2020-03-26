@@ -3104,24 +3104,32 @@ b{
     text-align: center;
     padding: 2px 0;
 }
-.share-container .social-links li a.facebook:hover {
-    background: #6a89cc;
+.share-container .social-links li a:hover {
+    background: #b4b5b5!important;
+    color: #ffffff!important;
+}
+.share-container .social-links li a.facebook {
+    background: #3b5998;
     color: #ffffff;
 }
-.share-container .social-links li a.twitter:hover {
-    background-color:#82ccdd;
+.share-container .social-links li a.whatsapp {
+    background: #4fce5d;
     color: #ffffff;
 }
-.share-container .social-links li a.google:hover {
+.share-container .social-links li a.twitter {
+    background-color:#00acee;
+    color: #ffffff;
+}
+.share-container .social-links li a.google {
     background: #ff6b81;
     color: #ffffff;
 }
-.share-container .social-links li a.pinterest:hover {
-    background-color: #ff4757;
+.share-container .social-links li a.pinterest {
+    background-color: #c8232c;
     color: #ffffff;
 }
-.share-container .social-links li a.mail:hover {
-    background: #ff7f50;
+.share-container .social-links li a.mail {
+    background: #d44638;
     color: #ffffff;
 }
 .share-container .embed-types {

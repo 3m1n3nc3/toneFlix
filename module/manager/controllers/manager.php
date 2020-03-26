@@ -271,6 +271,13 @@ class ManagerController extends Controller {
         }
         $this->request->redirect(url());
     }
+
+    function addAnonymousDownload() {
+        if (config('anonymous_downloads') && !$this->model('user')->isLoggedIn()) {
+            $id = $this->request->input('id');
+            $this->model('manager::manager')->addAnonymousDownload($id);
+        }
+    } 
 }
 
 function set_flashdata($key = '', $value = '') { 

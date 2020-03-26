@@ -12,6 +12,10 @@ Hook::getInstance()->register('profile.right.buttons', function($user) {
     echo view('manager::management/quick_links', array('user' => $user, 'type' => 'claim'));
 }); 
 
+Hook::getInstance()->register('admin.track.action', function($track) {
+    echo view('manager::management/quick_links', array('track' => $track, 'type' => 'stats'));
+}); 
+
 Hook::getInstance()->register('profile.name.section', function($user) {
     echo ($user['is_label'] ? ' ('.l('manager::record_label').')' : '');
 }); 
@@ -56,9 +60,34 @@ Hook::getInstance()->register('main.menu.bottom', function() {
 
 Hook::getInstance()->register('admin.menu.end', function() { 
     if(config('allow_artist_manager') && model('user')->getUser(model('user')->authId)['is_label']) {
-    	echo view('manager::management/sidemenu');
-	} 
+        echo view('manager::management/sidemenu');
+    } 
 }); 
+
+Hook::getInstance()->register('track.anonymous.downloads', function($track) { 
+    if(config('anonymous_downloads')) {
+        if (!config('sum_anonymous_downloads')) { 
+            echo view('manager::public/count_downloads', array('track' => $track));
+        }
+    } 
+}); 
+
+Hook::getInstance()->register('user.charts', function($result, $times) { 
+    $C = getController(); 
+    $anonymous_downloads = array(
+        'name' => l('manager::anonymous_downloads_lang'),
+        'points' => array()
+    );
+    $id = $C->request->input('id');
+
+    foreach($times as $name => $time) {
+        $stats = model('manager::manager')->countAllAnonymousDownloadsStatistics($id,$time[0], $time[1]);  
+        $anonymous_downloads['points'][$name] = $stats['anonymous_downloads'];
+    }  
+    $result['charts']['stats'][] = $anonymous_downloads;
+
+    return $result;
+});   
 
 $request->any("label/manager", array('uses' => 'manager::manager@index')); 
 $request->any("label/manager/tracks", array('uses' => 'manager::manager@tracks')); 
@@ -66,3 +95,4 @@ $request->any("label/manager/users", array('uses' => 'manager::manager@index'));
 $request->any("label/manager/user/edit", array('uses' => 'manager::manager@userEdit'));
 $request->any("label/manager/user/edit/picture", array('uses' => 'manager::manager@userPictureEdit'));
 $request->any("label/manager/user/action", array('uses' => 'manager::manager@userAction'));
+$request->any("label/track/add/anonymous/download", array('uses' => 'manager::manager@addAnonymousDownload', 'secure' => false));
