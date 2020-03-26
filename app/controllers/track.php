@@ -238,13 +238,19 @@ class TrackController extends Controller {
         if ($page != 'detail') $this->addBreadCrumb(l($page));
 
         $headerContent = '<meta property="og:image" content="'.$this->model('track')->getArt($track, 600).'"/>';
+        $headerContent = '<meta property="og:image:secure_url" content="'.$this->model('track')->getArt($track, 600).'" />';
+        $headerContent = '<meta property="og:image:width" content="1000" />';
+        $headerContent = '<meta property="og:image:height" content="1000" />';
+        $headerContent = '<meta property="og:image:alt" content="'.format_output_text($track['title']).'" />';
         $headerContent .= '<meta property="og:title" content="'.format_output_text($track['title']).'"/>';
         $headerContent .= '<meta property="og:url" content="'.$this->model('track')->trackUrl($track).'"/>';
         $headerContent .= '<meta property="og:description" content="'.$track['description'].'"/>';
-
+ 
+        $headerContent .= '<meta name="twitter:site" content="@'.$settings['site_name'].'" />';
         $headerContent .= '<meta property="twitter:image" content="'.$this->model('track')->getArt($track, 600).'"/>';
         $headerContent .= '<meta property="twitter:title" content="'.format_output_text($track['title']).'"/>';
-        $headerContent .= '<meta property="title:description" content="'.$track['description'].'"/>';
+        $headerContent .= '<meta property="title:description" content="'.$track['description'].'"/>'; 
+
         $this->addHeaderContent($headerContent);
 
         $this->useBreadcrumbs = false;
